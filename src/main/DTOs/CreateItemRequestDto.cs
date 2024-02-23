@@ -2,7 +2,7 @@
 
 namespace main.DTOs
 {
-    public class CreateItemDto
+    public class CreateItemRequestDto
     {
         [Required(ErrorMessage = "Please enter the title")]
         [StringLength(100)]
