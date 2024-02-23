@@ -1,0 +1,25 @@
+﻿@model main.DTOs.CreateItemDto
+
+@{
+    ViewData["Title"] = "Create New Item";
+}
+
+<h2>Create New Item</h2>
+<form asp-action="Create" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="form-group">
+        <label asp-for="Title"></label><br />
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"> </label><br />
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Quantity: </label><br />
+        <input asp-for="Quantity" class="form-control" value="1" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
