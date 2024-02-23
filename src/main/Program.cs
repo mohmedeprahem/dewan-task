@@ -21,6 +21,10 @@ builder
 
 builder.Services.AddAutoMapper(typeof(AutoMappingProfile));
 
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
+
+builder.Services.AddScoped<IItemService, ItemService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
