@@ -1,6 +1,7 @@
 ﻿using main.Data;
 using main.Interfaces.Repository;
 using main.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace main.Repositories
 {
@@ -21,5 +22,7 @@ namespace main.Repositories
 
             return item;
         }
+
+        public async Task<List<Item>> GetAllItemsAsync() => await _context.Items.ToListAsync();
     }
 }
