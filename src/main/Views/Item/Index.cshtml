@@ -11,6 +11,7 @@
             <th>Title</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +21,43 @@
                 <td>@item.Title</td>
                 <td>@item.Price</td>
                 <td>@item.Quantity</td>
+                <td>
+                    <button type="button" class="btn btn-success" onclick="addToCart('@item.Id', '@item.Title', '@item.Price', @item.Quantity)">Add to Cart</button>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script>
+    function addToCart(itemId, title, price, totalQuantity) {
+        var quantity = prompt("Enter quantity for " + title + ":", "1"); 
+        if (quantity !== null && !isNaN(quantity) && quantity > 0) {
+
+            if (quantity > totalQuantity) {
+                alert("Sorry, we only have " + totalQuantity + " items available.");
+                return;
+            }
+            var cartItem = {
+                itemId: itemId,
+                title: title,
+                price: price,
+                quantity: quantity
+            };
+            var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+            var existingIndex = cartItems.findIndex(obj => obj.itemId === itemId);
+
+            if (existingIndex !== -1) {
+                cartItems[existingIndex].quantity = quantity;
+            } else {
+                cartItems.push(cartItem);
+            }
+
+            localStorage.setItem("cartItems", JSON.stringify(cartItems)); 
+            alert("Item added to cart successfully!");
+        } else {
+            alert("Invalid quantity! Please enter a valid quantity.");
+        }
+    }
+</script>
