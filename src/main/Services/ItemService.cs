@@ -23,10 +23,5 @@ namespace main.Services
 
             return _itemRepository.CreateItemAsync(item);
         }
-
-        public async Task<List<Item>> GetAllItemsAsync()
-        {
-            return await _itemRepository.GetAllItemsAsync();
-        }
     }
 }
