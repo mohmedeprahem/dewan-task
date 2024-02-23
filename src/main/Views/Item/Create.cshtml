@@ -34,18 +34,17 @@
                     Quantity: $('#Quantity').val()
                 };
                 $.ajax({
-                    url: '/items/create',
+                    url: '@Url.Action("Create", "Item")',
                     method: 'POST',
                     dataType: 'json',
                     data: data,
                     success: function (response) {
-                        window.location.href = '/items';
+                        window.location.href = '@Url.Action("Index", "Item")';
                     },
                     error: function (xhr, textStatus, errorThrown) {
                         if (xhr.status === 400) {
                             var errors = xhr.responseJSON;
                             $.each(errors, function (fieldName, errorMessages) {
-                                console.log(fieldName);
                                 $('#' + fieldName + '-error').text(errorMessages.join(', '));
                             });
                         } else {

@@ -1,11 +1,11 @@
 ﻿using main.DTOs;
 using main.Interfaces.Services;
 using main.Models;
+using main.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace main.Controllers
 {
-    [Route("items")]
     public class ItemController : Controller
     {
         private readonly IItemService itemService;
@@ -13,6 +13,12 @@ namespace main.Controllers
         public ItemController(IItemService itemService)
         {
             this.itemService = itemService;
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            var items = await itemService.GetAllItemsAsync();
+            return View(items);
         }
 
         [HttpGet]
