@@ -1,4 +1,9 @@
 using main.Data;
+using main.Interfaces.Repository;
+using main.Interfaces.Services;
+using main.Repositories;
+using main.Services;
+using main.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +18,8 @@ builder
     {
         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
     });
+
+builder.Services.AddAutoMapper(typeof(AutoMappingProfile));
 
 var app = builder.Build();
 
