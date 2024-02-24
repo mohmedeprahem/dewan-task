@@ -25,6 +25,11 @@ builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
 builder.Services.AddScoped<IItemService, ItemService>();
 
+builder.Services.AddScoped<IReceiptRepository, ReceiptRepository>();
+
+builder.Services.AddScoped<IReceiptService, ReceiptService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

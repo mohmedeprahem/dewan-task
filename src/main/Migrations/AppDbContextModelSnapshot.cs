@@ -19,21 +19,6 @@ namespace main.Migrations
                 .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("ItemReceipt", b =>
-                {
-                    b.Property<int>("ItemsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReceiptsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemsId", "ReceiptsId");
-
-                    b.HasIndex("ReceiptsId");
-
-                    b.ToTable("ItemReceipt");
-                });
-
             modelBuilder.Entity("main.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -56,6 +41,21 @@ namespace main.Migrations
                     b.ToTable("Items");
                 });
 
+            modelBuilder.Entity("main.Models.ItemReceipt", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiptId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemId", "ReceiptId");
+
+                    b.HasIndex("ReceiptId");
+
+                    b.ToTable("ItemReceipts");
+                });
+
             modelBuilder.Entity("main.Models.Receipt", b =>
                 {
                     b.Property<int>("Id")
@@ -65,7 +65,7 @@ namespace main.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<double>("PaidPrice")
+                    b.Property<double>("PaidAmount")
                         .HasColumnType("double");
 
                     b.Property<double>("TotalPrice")
@@ -76,19 +76,33 @@ namespace main.Migrations
                     b.ToTable("Receipts");
                 });
 
-            modelBuilder.Entity("ItemReceipt", b =>
+            modelBuilder.Entity("main.Models.ItemReceipt", b =>
                 {
-                    b.HasOne("main.Models.Item", null)
-                        .WithMany()
-                        .HasForeignKey("ItemsId")
+                    b.HasOne("main.Models.Item", "Item")
+                        .WithMany("ItemReceipts")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("main.Models.Receipt", null)
-                        .WithMany()
-                        .HasForeignKey("ReceiptsId")
+                    b.HasOne("main.Models.Receipt", "Receipt")
+                        .WithMany("ItemReceipts")
+                        .HasForeignKey("ReceiptId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Receipt");
+                });
+
+            modelBuilder.Entity("main.Models.Item", b =>
+                {
+                    b.Navigation("ItemReceipts");
+                });
+
+            modelBuilder.Entity("main.Models.Receipt", b =>
+                {
+                    b.Navigation("ItemReceipts");
                 });
 #pragma warning restore 612, 618
         }

@@ -24,5 +24,19 @@ namespace main.Repositories
         }
 
         public async Task<List<Item>> GetAllItemsAsync() => await _context.Items.ToListAsync();
+
+        public async Task<Item?> GetItemByIdAsync(int id) => await _context.Items.FindAsync(id);
+
+        public void UpdateItemAsync(Item item)
+        {
+            _context.Items.Update(item);
+        }
+
+        public async Task AddItemToReceiptAsync(int itemId, int ReceiptId)
+        {
+            await _context
+                .ItemReceipts
+                .AddAsync(new ItemReceipt { ItemId = itemId, ReceiptId = ReceiptId });
+        }
     }
 }

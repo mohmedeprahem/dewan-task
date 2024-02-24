@@ -9,6 +9,7 @@ namespace main.Utilities
         public AutoMappingProfile()
         {
             CreateMap<CreateItemRequestDto, Item>();
+            CreateMap<CreateReceiptRequestDto, Receipt>();
         }
     }
 }

@@ -39,14 +39,15 @@
                 return;
             }
             var cartItem = {
-                itemId: itemId,
+                id: itemId,
                 title: title,
                 price: price,
                 quantity: quantity
             };
             var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-            var existingIndex = cartItems.findIndex(obj => obj.itemId === itemId);
+            var existingIndex = cartItems.findIndex(obj => obj.id === itemId);
+
 
             if (existingIndex !== -1) {
                 cartItems[existingIndex].quantity = quantity;

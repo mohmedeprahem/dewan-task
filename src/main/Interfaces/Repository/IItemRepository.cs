@@ -6,5 +6,8 @@ namespace main.Interfaces.Repository
     {
         Task<Item> CreateItemAsync(Item item);
         Task<List<Item>> GetAllItemsAsync();
+        Task<Item?> GetItemByIdAsync(int id);
+        void UpdateItemAsync(Item item);
+        Task AddItemToReceiptAsync(int itemId, int ReceiptId);
     }
 }

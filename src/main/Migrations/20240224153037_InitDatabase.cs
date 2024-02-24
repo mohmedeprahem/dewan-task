@@ -39,7 +39,7 @@ namespace main.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     TotalPrice = table.Column<double>(type: "double", nullable: false),
-                    PaidPrice = table.Column<double>(type: "double", nullable: false),
+                    PaidAmount = table.Column<double>(type: "double", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -49,24 +49,24 @@ namespace main.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ItemReceipt",
+                name: "ItemReceipts",
                 columns: table => new
                 {
-                    ItemsId = table.Column<int>(type: "int", nullable: false),
-                    ReceiptsId = table.Column<int>(type: "int", nullable: false)
+                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    ReceiptId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemReceipt", x => new { x.ItemsId, x.ReceiptsId });
+                    table.PrimaryKey("PK_ItemReceipts", x => new { x.ItemId, x.ReceiptId });
                     table.ForeignKey(
-                        name: "FK_ItemReceipt_Items_ItemsId",
-                        column: x => x.ItemsId,
+                        name: "FK_ItemReceipts_Items_ItemId",
+                        column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ItemReceipt_Receipts_ReceiptsId",
-                        column: x => x.ReceiptsId,
+                        name: "FK_ItemReceipts_Receipts_ReceiptId",
+                        column: x => x.ReceiptId,
                         principalTable: "Receipts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -74,16 +74,16 @@ namespace main.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemReceipt_ReceiptsId",
-                table: "ItemReceipt",
-                column: "ReceiptsId");
+                name: "IX_ItemReceipts_ReceiptId",
+                table: "ItemReceipts",
+                column: "ReceiptId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ItemReceipt");
+                name: "ItemReceipts");
 
             migrationBuilder.DropTable(
                 name: "Items");
