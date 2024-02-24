@@ -1,6 +1,7 @@
 ﻿using main.Data;
 using main.Interfaces.Repository;
 using main.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace main.Repositories
 {
@@ -16,6 +17,11 @@ namespace main.Repositories
         public async Task CreateReceiptAsync(Receipt receipt)
         {
             await context.Receipts.AddAsync(receipt);
+        }
+
+        public async Task<List<Receipt>> GetAllReceiptsAsync()
+        {
+            return await context.Receipts.ToListAsync();
         }
     }
 }
