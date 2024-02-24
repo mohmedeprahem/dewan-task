@@ -9,5 +9,6 @@ namespace main.Interfaces.Repository
         Task<Item?> GetItemByIdAsync(int id);
         void UpdateItemAsync(Item item);
         Task AddItemToReceiptAsync(int itemId, int ReceiptId);
+        Task<List<Item>> GetItemsByReceiptIdAsync(int ReceiptId);
     }
 }

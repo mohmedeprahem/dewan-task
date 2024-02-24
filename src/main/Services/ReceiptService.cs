@@ -103,5 +103,10 @@ namespace main.Services
         {
             return await unitOfWork.ReceiptRepository.GetAllReceiptsAsync();
         }
+
+        public async Task<List<Item>> GetItemsByReceiptId(int id)
+        {
+            return await unitOfWork.ItemRepository.GetItemsByReceiptIdAsync(id);
+        }
     }
 }
