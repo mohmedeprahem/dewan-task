@@ -98,5 +98,10 @@ namespace main.Services
                 throw;
             }
         }
+
+        public async Task<List<Receipt>> GetAllReceiptsAsync()
+        {
+            return await unitOfWork.ReceiptRepository.GetAllReceiptsAsync();
+        }
     }
 }
