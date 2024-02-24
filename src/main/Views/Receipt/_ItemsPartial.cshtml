@@ -1,0 +1,8 @@
+﻿@model IEnumerable<main.Models.Item>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.Title - Quantity: @item.Quantity</li>
+    }
+</ul>

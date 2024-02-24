@@ -23,7 +23,46 @@
                 <td>@receipt.TotalPrice</td>
                 <td>@receipt.PaidAmount</td>
                 <td>@receipt.CreatedAt</td>
+                <td>
+                    <button type="button" class="btn btn-success" onclick="showItemsModal('@receipt.Id')">Details</button>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal" id="itemsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Receipt Items</h4>
+            </div>
+            <div class="modal-body" id="itemsList">
+                <!-- Items will be displayed here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showItemsModal(receiptId) {
+        $.ajax({
+            url: '@Url.Action("GetItems", "Receipt")',
+            method: 'GET',
+            data: { receiptId: receiptId },
+            success: function (response) {
+                $('#itemsList').html(response);
+                $('#itemsModal').modal('show');
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching receipt items:", error);
+                alert("An error occurred while fetching receipt items. Please try again later.");
+            }
+        });
+    }
+
+    $('.modal-header .close, .modal-footer .btn-danger').on('click', function () {
+        $('#itemsModal').modal('hide');
+    });
+</script>
