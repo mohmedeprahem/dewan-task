@@ -1,5 +1,6 @@
 ﻿using main.DTOs;
 using main.Interfaces.Services;
+using main.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace main.Controllers
@@ -13,9 +14,11 @@ namespace main.Controllers
             this.receiptService = receiptService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Receipt> receipts = await receiptService.GetAllReceiptsAsync();
+
+            return View(receipts);
         }
 
         [HttpPost]
