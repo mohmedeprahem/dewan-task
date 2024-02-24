@@ -46,5 +46,11 @@ namespace main.Controllers
 
             return Created();
         }
+
+        public async Task<IActionResult> GetItems(int receiptId)
+        {
+            var items = await receiptService.GetItemsByReceiptId(receiptId);
+            return PartialView("_ItemsPartial", items);
+        }
     }
 }
