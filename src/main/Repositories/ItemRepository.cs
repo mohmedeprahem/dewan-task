@@ -38,5 +38,11 @@ namespace main.Repositories
                 .ItemReceipts
                 .AddAsync(new ItemReceipt { ItemId = itemId, ReceiptId = ReceiptId });
         }
+
+        public async Task<List<Item>> GetItemsByReceiptIdAsync(int ReceiptId) =>
+            await _context
+                .Items
+                .Where(i => i.ItemReceipts.Any(ir => ir.ReceiptId == ReceiptId))
+                .ToListAsync();
     }
 }

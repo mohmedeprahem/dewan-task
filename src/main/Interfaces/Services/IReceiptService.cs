@@ -10,5 +10,6 @@ namespace main.Interfaces.Services
         );
 
         Task<List<Receipt>> GetAllReceiptsAsync();
+        Task<List<Item>> GetItemsByReceiptId(int id);
     }
 }
