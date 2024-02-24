@@ -10,10 +10,10 @@ namespace main.Models
         public double TotalPrice { get; set; }
 
         [Required]
-        public double PaidPrice { get; set; }
+        public double PaidAmount { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public ICollection<Item> Items { get; set; }
+        public ICollection<ItemReceipt> ItemReceipts { get; set; }
     }
 }
