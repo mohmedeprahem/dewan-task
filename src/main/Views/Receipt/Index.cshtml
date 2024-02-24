@@ -1,0 +1,29 @@
+﻿@model IEnumerable<main.Models.Receipt>
+
+@{
+    ViewData["Title"] = "User Receipts";
+}
+
+<h1>User Receipts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Total Price</th>
+            <th>Paid Amount</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var receipt in Model)
+        {
+            <tr>
+                <td>@receipt.Id</td>
+                <td>@receipt.TotalPrice</td>
+                <td>@receipt.PaidAmount</td>
+                <td>@receipt.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>
