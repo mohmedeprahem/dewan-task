@@ -16,6 +16,6 @@ namespace main.Models
         [Required]
         public int Quantity { get; set; }
 
-        public ICollection<Receipt> Receipts { get; set; }
+        public ICollection<ItemReceipt> ItemReceipts { get; set; }
     }
 }
